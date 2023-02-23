@@ -8,7 +8,9 @@
     @livewireStyles
 </head>
 <body>
-    @livewire('migration-view')
+    @livewire('migration-view', [
+        'pageString' => $pagination,
+    ])
     @livewireScripts
 </body>
 </html>

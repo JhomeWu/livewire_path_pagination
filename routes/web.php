@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('page');
+Route::get('/{pagination?}', function ($pagination = 'p-1') {
+    return view('page', [
+        'pagination' => $pagination,
+    ]);
 });
