@@ -26,11 +26,13 @@
         @endif
     >>>>></button>
 </div>
+
 <script>
 
 document.addEventListener('livewire:load', function () {
     Livewire.on('changePath', function (value) {
-        window.history.pushState(null, null, '/p-' + value);
+        const path = "{{$baseUrl}}" + '/p-' ;
+        window.history.pushState(null, null, path + value);
     });
 });
 </script>

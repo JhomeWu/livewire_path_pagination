@@ -10,6 +10,18 @@ class MigrationView extends Component
     public $migrations;
     public $currentPage;
     public $lastPage;
+    public $baseUrl;
+
+    public function setBaseUrl()
+    {
+        $currentUrl = request()->url();
+        $currentUrlPart = explode('/', $currentUrl);
+        $lastPath = end($currentUrlPart);
+        if (preg_match('/^p-\d+$/', $lastPath)) {
+            array_pop($currentUrlPart);
+        }
+        $this->baseUrl = implode('/', $currentUrlPart);
+    }
 
     public function mount($pageString = 'p-1')
     {
@@ -43,6 +55,7 @@ class MigrationView extends Component
 
     public function render()
     {
+        $this->setBaseUrl();
         return view('livewire.migration-view');
     }
 }

@@ -18,3 +18,9 @@ Route::get('/{pagination?}', function ($pagination = 'p-1') {
         'pagination' => $pagination,
     ]);
 });
+
+Route::get('/other/{pagination?}', function ($pagination = 'p-1') {
+    return view('page', [
+        'pagination' => $pagination,
+    ]);
+});
