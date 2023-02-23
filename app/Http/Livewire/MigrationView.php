@@ -21,6 +21,26 @@ class MigrationView extends Component
         $this->lastPage = $migrationPage->lastPage();
     }
 
+    public function toPreviousPage()
+    {
+        $this->currentPage = max(1, $this->currentPage - 1);
+        $this->mount('p-' . $this->currentPage);
+        $this->emit('changePath', $this->currentPage);
+    }
+
+    public function toNextPage()
+    {
+        $this->currentPage = min($this->lastPage, $this->currentPage + 1);
+        $this->mount('p-' . $this->currentPage);
+        $this->emit('changePath', $this->currentPage);
+    }
+
+    public function toPage($pageString)
+    {
+        $this->mount($pageString);
+        $this->emit('changePath', $this->currentPage);
+    }
+
     public function render()
     {
         return view('livewire.migration-view');
